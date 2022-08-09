@@ -74,14 +74,16 @@ function App() {
   const  { goodCount, badCount, goodRatio } = getDiaryAnalysis
 
   return (
-    <div className="App">
-      <DiaryEditor onCreate={onCreate}/>
-      <div>전체 일기 {data.length}</div>
-      <div>기분좋은 일기 {goodCount}</div>
-      <div>기분나쁜 일기 {badCount}</div>
-      <div>기분좋은 일기 비율 {goodRatio}%</div>
-      <DiaryList onRemove={onRemove} diaryList={data} onEdit={onEdit}/>
-    </div>
+    <DiaryStateContext.Provider>
+      <div className="App">
+        <DiaryEditor onCreate={onCreate}/>
+        <div>전체 일기 {data.length}</div>
+        <div>기분좋은 일기 {goodCount}</div>
+        <div>기분나쁜 일기 {badCount}</div>
+        <div>기분좋은 일기 비율 {goodRatio}%</div>
+        <DiaryList onRemove={onRemove} diaryList={data} onEdit={onEdit}/>
+      </div>
+    </DiaryStateContext.Provider>
   );
 }
 
