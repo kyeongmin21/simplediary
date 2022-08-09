@@ -4,6 +4,10 @@ import DiaryList from './DiaryList';
 import './App.css';
 
 
+
+export const DiaryStateContext = React.createContext()
+
+
 function App() {
   // 일기가 없는 상태니깐 빈 배열로 출발!
   const [data, setData] = useState([]);
