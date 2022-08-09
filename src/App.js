@@ -74,7 +74,7 @@ function App() {
   const  { goodCount, badCount, goodRatio } = getDiaryAnalysis
 
   return (
-    <DiaryStateContext.Provider>
+    <DiaryStateContext.Provider value={data}>
       <div className="App">
         <DiaryEditor onCreate={onCreate}/>
         <div>전체 일기 {data.length}</div>
