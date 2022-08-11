@@ -51,11 +51,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### 10) 최적화4
 - DiaryItem  React.memo 묶어주기
 - App(onRemove, onEdit) : useCallback 하고, setData에 인자는 data로 받고, 함수형으로 업데이트 하도록 지시
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-## Learn More
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-To learn React, check out the [React documentation](https://reactjs.org/).
