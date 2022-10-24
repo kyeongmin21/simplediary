@@ -2,8 +2,7 @@
 ## 1. 간단한 일기장 프로젝트
 
 ### 1) React에서 사용자 입력 처리하기
-- 변수 배열에 담았을 때
-- 객체로 담았을 때 (onChange 안에서 `setState`를 불러올 때 `...state` 스프레드 연산자로 가져올 수 있음)
+- useState
 
 
 ### 2) React에서 DOM 조작하기
@@ -11,10 +10,10 @@
 
 
 ### 3) 배열사용하기1 - 리스트 렌더링(조회)
-- `diaryList` 컴포넌트 만들고,
-- 배열을 prop 으로 전달 받아
-- map 내장함수를 이용해 list 형태로 렌더링
-- 렌더링된 아이템을 별도로 item 컴포넌트로 만듬
+- `DiaryList.js` 컴포넌트 생성
+- `App.js` : dummyList 배열을 `DiaryList.js` 컴포넌트에 data 전달
+- `DiaryList.js` : props로 받은 diaryList를 map 내장함수를 이용해 list 형태로 렌더링
+- 렌더링된 아이템을 별도로 `DiaryItme.js` 컴포넌트로 만듬
 
 
 ### 4) 배열사용하기2 - 데이터 추가하기
