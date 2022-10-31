@@ -1,11 +1,32 @@
 import './App.css';
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 
 function App() {
   const [data, setData] = useState([])
   const dataId = useRef(0);
+
+  const getData = async() => {
+    const res = await fetch('https://jsonplaceholder.typicode.com/comments')
+      .then((res) => res.json());
+
+    const initData = res.slice(0, 20).map((item) => {
+      return {
+        author: item.email,
+        content: item.body,
+        emotion: Math.floor(Math.random() * 5 ) + 1,
+        id: dataId.current++
+      }
+    })
+
+    setData(initData);
+  }
+
+  // 컴포넌트가 mount 되는 시점에 getData 호출
+  useEffect(() => {
+    getData();
+  }, []);
 
   const onCreate = (author, content, emotion) => {
     dataId.current += 1
