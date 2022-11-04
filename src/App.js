@@ -3,7 +3,7 @@ import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 import Optimize from "./Optimize";
 import OptimizeObj from "./OptimizeObj";
-import {useState, useRef, useEffect, useMemo} from "react";
+import {useState, useRef, useEffect, useMemo, useCallback} from "react";
 
 function App() {
   const [data, setData] = useState([])
@@ -30,10 +30,12 @@ function App() {
     getData();
   }, []);
 
-  const onCreate = (author, content, emotion) => {
-    dataId.current += 1
-    setData([{author, content, emotion, id: dataId.current}, ...data])
-  }
+   const onCreate = useCallback((author, content, emotion) => {
+    dataId.current += 1;
+    // DOM 노드를 얻기 위해 "current" 프로퍼티에 접근
+    setData((data) => [{author, content, emotion, id: dataId.current}, ...data])
+  }, []);
+
 
   const onDelete = (targetId) => {
     setData(data.filter(item => item.id !== targetId))
