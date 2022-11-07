@@ -3,9 +3,9 @@ import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 import Optimize from "./Optimize";
 import OptimizeObj from "./OptimizeObj";
-import {useState, useRef, useEffect, useMemo} from "react";
+import {useState, useRef, useEffect, useMemo, useCallback} from "react";
 
-function App() {
+function App(callback, deps) {
   const [data, setData] = useState([])
   const dataId = useRef(0);
 
@@ -30,10 +30,10 @@ function App() {
     getData();
   }, []);
 
-  const onCreate = (author, content, emotion) => {
+  const onCreate = useCallback((author, content, emotion) => {
     dataId.current += 1
-    setData([{author, content, emotion, id: dataId.current}, ...data])
-  }
+    setData((data) => [{author, content, emotion, id: dataId.current}, ...data])
+  }, [])
 
   const onDelete = (targetId) => {
     setData(data.filter(item => item.id !== targetId))
@@ -54,14 +54,14 @@ function App() {
 
   return (
     <div className="App">
-      <Optimize />
-      <OptimizeObj />
       <DiaryEditor onCreate={onCreate} />
+      <DiaryList diaryList={data} onDelete={onDelete} onEdit={onEdit}/>
+
       <div>전체일기 : data.length</div>
       <div>기분 좋은 일기 : {goodCount}</div>
       <div>기분 나쁜 일기 : {badCount}</div>
       <div>기분 좋은 일기 비율 : {goodRatio}</div>
-      <DiaryList diaryList={data} onDelete={onDelete} onEdit={onEdit}/>
+
     </div>
   );
 }
