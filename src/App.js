@@ -1,8 +1,6 @@
 import './App.css';
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
-import Optimize from "./Optimize";
-import OptimizeObj from "./OptimizeObj";
 import {useState, useRef, useEffect, useMemo, useCallback} from "react";
 
 function App() {
@@ -31,19 +29,19 @@ function App() {
   }, []);
 
    const onCreate = useCallback((author, content, emotion) => {
-    dataId.current += 1;
     // DOM 노드를 얻기 위해 "current" 프로퍼티에 접근
+     dataId.current += 1;
     setData((data) => [{author, content, emotion, id: dataId.current}, ...data])
   }, []);
 
 
-  const onDelete = (targetId) => {
-    setData(data.filter(item => item.id !== targetId))
-  }
+  const onDelete = useCallback((targetId) => {
+    setData((data) => data.filter(item => item.id !== targetId))
+  }, []);
 
-  const onEdit = (targetId, newContent) => {
-    setData(data.map(item => item.id === targetId ? {...item, content: newContent} : item))
-  }
+  const onEdit = useCallback((targetId, newContent) => {
+    setData((data) => data.map(item => item.id === targetId ? {...item, content: newContent} : item))
+  }, []);
 
   const getDiaryAnalysis = useMemo(() => {
     const goodCount = data.filter(item => item.emotion >= 3).length
@@ -63,7 +61,6 @@ function App() {
       <div>기분 좋은 일기 : {goodCount}</div>
       <div>기분 나쁜 일기 : {badCount}</div>
       <div>기분 좋은 일기 비율 : {goodRatio}</div>
-
     </div>
   );
 }
