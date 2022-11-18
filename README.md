@@ -69,11 +69,11 @@
 
 ### 11) Context - 컴포넌트 트리에 데이터 공급하기
 - 단계마다 일일이 props를 넘겨주지 않고도 컴포넌트 트리 전체에 데이터를 제공
-- `export const DiaryStateContext = React.createContext();`
-- `<DiaryStateContext.Provider value={data}>
-     <DiaryEditor onCreate={onCreate}/>
-  </DiaryStateContext.Provider> `
-  
-- `  const {onCreate} = useContext(DiaryDispatchContext); `
+- context API를 사용하기 위해서는 Provider , Consumer , createContext 이렇게 세가지 개념을 알고 있으면 된다.
+ - createContext : context 객체를 생성한다.
+ - Provider : 생성한 context를 하위 컴포넌트에게 전달하는 역할을 한다.
+ - Consumer : context의 변화를 감시하는 컴포넌트이다.
+
+
   
   
