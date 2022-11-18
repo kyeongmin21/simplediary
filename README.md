@@ -68,3 +68,12 @@
 
 
 ### 11) Context - 컴포넌트 트리에 데이터 공급하기
+- 단계마다 일일이 props를 넘겨주지 않고도 컴포넌트 트리 전체에 데이터를 제공
+- `export const DiaryStateContext = React.createContext();`
+- `<DiaryStateContext.Provider value={data}>
+     <DiaryEditor onCreate={onCreate}/>
+  </DiaryStateContext.Provider> `
+  
+- `  const {onCreate} = useContext(DiaryDispatchContext); `
+  
+  
