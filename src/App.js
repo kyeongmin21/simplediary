@@ -88,10 +88,9 @@ function App() {
           <DiaryEditor onCreate={onCreate}/>
           <DiaryList onDelete={onDelete} onEdit={onEdit}/>
 
-          <div>전체일기 : data.length</div>
+          <div>전체일기 : data.length </div>
           <div>기분 좋은 일기 : {goodCount}</div>
           <div>기분 나쁜 일기 : {badCount}</div>
-          <div>기분 좋은 일기 비율 : {goodRatio}</div>
         </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>
     </div>
